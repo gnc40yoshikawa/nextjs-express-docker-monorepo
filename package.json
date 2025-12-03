@@ -1,0 +1,16 @@
+{
+  "name": "nextjs-express-docker-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "docker compose up",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.24.0"
+}
