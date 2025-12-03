@@ -1,0 +1,34 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: apps/backend/Dockerfile
+      target: dev          # ← 開発用ステージ
+    container_name: backend
+    ports:
+      - "4000:4000"
+    environment:
+      NODE_ENV: development
+    # ソースコードをコンテナにマウント（ホットリロード）
+    volumes:
+      - .:/app
+      - /app/node_modules  # node_modules はコンテナ側を使う
+
+  frontend:
+    build:
+      context: .
+      dockerfile: apps/frontend/Dockerfile
+      target: dev
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      NEXT_TELEMETRY_DISABLED: "1"
+      # フロントからバックエンドへ叩くURL（必要に応じて使用）
+      NEXT_PUBLIC_API_BASE_URL: "http://backend:4000"
+    depends_on:
+      - backend
+    volumes:
+      - .:/app
+      - /app/node_modules
