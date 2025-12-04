@@ -22,6 +22,7 @@ WORKDIR /app
 COPY . .
 # 依存関係をコピー
 COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/apps/frontend/node_modules ./apps/frontend/node_modules
 EXPOSE 3000
 # monorepo 内の frontend を dev 起動
 CMD ["pnpm", "--filter", "./apps/frontend", "dev"]

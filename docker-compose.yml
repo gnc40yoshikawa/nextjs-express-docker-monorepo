@@ -13,6 +13,7 @@ services:
     volumes:
       - .:/app
       - /app/node_modules  # node_modules はコンテナ側を使う
+      - /app/apps/backend/node_modules
 
   frontend:
     build:
@@ -32,3 +33,4 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+      - /app/apps/frontend/node_modules
