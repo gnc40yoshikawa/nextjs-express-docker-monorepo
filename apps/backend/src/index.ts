@@ -1,10 +1,12 @@
 import express from "express";
 
 const app = express();
-const port = process.env.PORT ?? 4000;
+const port = process.env.PORT || 4000;
 
-app.get("/", (_req, res) => {
-  res.json({ message: "Hello from backend!" });
+app.get("/message", (_req, res) => {
+  const msg = `Hello from backend! time=${new Date().toISOString()}`;
+  console.log(msg); // ログにも出力
+  res.json({ message: msg });
 });
 
 app.listen(port, () => {
